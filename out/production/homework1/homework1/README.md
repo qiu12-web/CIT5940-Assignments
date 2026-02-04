@@ -85,6 +85,5 @@ Your report should answer the following questions:
     * What about in actual runtime?
 * Which implementation do you suggest should be used? Are there certain situations that might call for the other approach?
 
-Theoretically, both algorithms are similarly efficient in terms of space and time. Both algorithms have a time complexity of (n* log(n)) and a space complexity of (n).
-However, the actual average runtime for both algorithms differs. For MergeSort, the average runtime is 1.4221392 ms, whereas for JavierMergeSort, the average runtime is 1.8715502 ms, which is slightly slower than the MergeSort.
-It appears the actual runtime of MergeSort is less than the actual runtime of JavierMergeSort. Therefore, I recommend using the recursive implementation (MergeSort). However, in some situations, for example, when someone is concerned about the depth of recursion as a result of having a large number of elements in an environment that has small stack limits, then the iterative approach (JavierMergeSort) may come in handy. 
+Theoretically, both algorithms are similarly efficient 
+actual average runtime: MergeSort(1.4221392 ms), JavierMergeSort()

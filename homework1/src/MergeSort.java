@@ -1,21 +1,11 @@
 package homework1.src;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
-
-public class JavierMergeSort {
-
+public class MergeSort {
     public static void main(String[] args) {
-
-        //int[] input = new int[1000];
-        //Random rand = new Random();
-
-        //for (int i = 0; i < 1000; i++) {
-        //    input[i] = rand.nextInt(5000);
-        //}
-
-        //mergeSort(input);
 
         int trials = 10;
         long totalTime = 0;
@@ -32,40 +22,21 @@ public class JavierMergeSort {
         }
         double avgTime = (totalTime / (double) trials)/1000000;
         System.out.println("Total time: " + avgTime + " ms");
-
     }
 
 
     public static int[] mergeSort(int[] input) {
-        // Create an empty list of arrays
-        LinkedList<int[]> queue = new LinkedList<>();
-
-
-        // Turn every number into a {num} array and add to queue
-        for (int num : input) {
-            int[] singleElementArray = {num};
-            queue.add(singleElementArray);
+        //base case: if only left with 1 or 0 input, then return its value
+        if (input.length <= 1) {
+            return input;
         }
-
-
-        // Pick the first two arrays in the list and merge them
-        // We check > 1, so we know it is safe to call remove() twice inside.
-        while (queue.size() > 1) {
-            int[] first = queue.remove(0);  // gets first value and removes it
-            int[] second = queue.remove(0); // gets next value
-
-
-            int[] combined = merge(first, second);
-            queue.add(combined); // add to the back of the line
-        }
-
-
-        // Return the result after it’s the only thing left
-        if (queue.isEmpty()) {
-            return new int[0]; // Return empty array if input was empty
-        } else {
-            return queue.remove();
-        }
+        //recursive case: keep dividing the left and the right parts into smaller parts until each side is only left with 1 or 0 input
+        int mid = input.length / 2;
+        int[] left = Arrays.copyOfRange(input, 0, mid);
+        int[] right = Arrays.copyOfRange(input, mid, input.length);
+        left = mergeSort(left);
+        right = mergeSort(right);
+        return merge(left, right);
     }
 
 
@@ -96,7 +67,7 @@ public class JavierMergeSort {
             i++;
             k++;
         }
-        
+
         // Add remaining elements from b (if any)
         while (j < b.length) {
             result[k] = b[j];
@@ -108,4 +79,3 @@ public class JavierMergeSort {
         return result;
     }
 }
-
